@@ -16,9 +16,20 @@ namespace MindEval.FiveSquare.App
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{action}/{id}",
+                routeTemplate: "{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+           // config.Routes.MapHttpRoute(
+           //    name: "CheckApi",
+           //    routeTemplate: "{controller}/{id}/{action}",
+           //    defaults: new { id = RouteParameter.Optional }
+           //);
+
+           // config.Routes.MapHttpRoute(
+           //    name: "Api",
+           //    routeTemplate: "api/{controller}/{action}"
+           //);
         }
     }
 }
