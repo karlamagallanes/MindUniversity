@@ -12,18 +12,9 @@ namespace MindEval.FiveSquare.Helpers
             string result = null;
             if (!String.IsNullOrEmpty(text))
             {
-                byte[] plaintextBytes = Encoding.Unicode.GetBytes(text);
+                byte[] data = Encoding.UTF8.GetBytes(text);
 
-                SymmetricAlgorithm symmetricAlgorithm = DES.Create();
-                symmetricAlgorithm.Key = new byte[8] { 1, 3, 3, 7, 4, 9, 0, 5 };
-                using (MemoryStream memoryStream = new MemoryStream())
-                {
-                    using (CryptoStream cryptoStream = new CryptoStream(memoryStream, symmetricAlgorithm.CreateEncryptor(), CryptoStreamMode.Write))
-                    {
-                        cryptoStream.Write(plaintextBytes, 0, plaintextBytes.Length);
-                    }
-                    result = Encoding.Unicode.GetString(memoryStream.ToArray());
-                }
+                result = Convert.ToBase64String(data);
             }
             return result;
         }

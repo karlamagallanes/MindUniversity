@@ -41,6 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountService.cs" />
+    <Compile Include="CheckManager.cs" />
+    <Compile Include="ICheckManager.cs" />
+    <Compile Include="IPlace.cs" />
+    <Compile Include="IUser.cs" />
+    <Compile Include="Place.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>

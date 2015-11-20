@@ -27,19 +27,24 @@ namespace MindEval.FiveSquare.Data
 
         public DTO.Place FindUserById(int id)
         {
-            var place = from u in places
-                       where u.Id == id
-                       select u;
-            return (DTO.Place)place;
+            DTO.Place place = places.First(p => p.Id == id);
+            return place;
         }
 
         public bool Exist(int id)
         {
-            var place = from p in places
-                        where p.Id == id
-                       select p;
+            DTO.Place place = places.First(p => p.Id == id);
             return place != null;
         }
 
+        public List<DTO.Place> GetNearbyPlaces(decimal longitude, decimal latitude)
+        {
+            List<DTO.Place> nearbyPlaces = new List<DTO.Place>();
+            nearbyPlaces.AddRange(
+                places.OrderBy(x =>
+                    ((longitude - x.Longitude) * (longitude - x.Longitude) + (latitude - x.Latitude) * (latitude - x.Latitude))
+                ).Take(5));
+            return nearbyPlaces;
+        }
     }
 }

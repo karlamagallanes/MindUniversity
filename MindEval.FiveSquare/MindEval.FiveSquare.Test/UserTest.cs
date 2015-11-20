@@ -53,20 +53,6 @@ namespace MindEval.FiveSquare.Test
             {
                 Assert.IsTrue(mamalona is DTO.MamalonaException);
             }
-        }
-
-        [TestMethod]
-        public void BadLogout()
-        {
-            try {
-                BL.User user = new Business.User();
-                string token = user.Login("martin@gmail.com", "martin@123");
-                token += "badtoken";
-                user.Logout(token);
-            }
-            catch (Exception ex){
-                Assert.IsTrue(ex is DTO.MamalonaException);
-            }
-        }
+        }      
     }
 }

@@ -28,10 +28,9 @@ namespace MindEval.FiveSquare.Data
 
         public bool IsActive(string token)
         {
-            var activeToken = from t in activeTokens
-                       where t.Equals(token) 
-                       select t;
-            return activeToken != null;
+            string activeToken = activeTokens.FirstOrDefault(t => t.Equals(token));
+            return !string.IsNullOrEmpty(activeToken);
+            
         }
 
         public void Insert(string token)

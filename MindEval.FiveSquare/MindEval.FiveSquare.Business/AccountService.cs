@@ -17,20 +17,20 @@ namespace MindEval.FiveSquare.Business
         public void ValidateActiveToken(string token)
         {
             if(!_activeTokens.IsActive(token))
-                throw new DTO.MamalonaException(DTO.MamalonaExceptionMessage.UserIsNotLogged);
+                throw new DTO.MamalonaException(DTO.MamalonaMessage.UserIsNotLogged);
         }
 
         public void RegisterAccount(string token)
         {
             if(_activeTokens.IsActive(token))
-                throw new DTO.MamalonaException(DTO.MamalonaExceptionMessage.UserAlreadyLogged);
+                throw new DTO.MamalonaException(DTO.MamalonaMessage.UserAlreadyLogged);
             _activeTokens.Insert(token);
         }
 
         public void RemoveAccount(string token)
         {
             if (!_activeTokens.IsActive(token))
-                throw new DTO.MamalonaException(DTO.MamalonaExceptionMessage.UserIsNotLogged);
+                throw new DTO.MamalonaException(DTO.MamalonaMessage.UserIsNotLogged);
         }
     }
 }

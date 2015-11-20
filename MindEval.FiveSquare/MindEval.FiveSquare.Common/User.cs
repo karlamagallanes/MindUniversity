@@ -24,7 +24,7 @@ namespace MindEval.FiveSquare.Common
         public string Email { get; set; }
         [JsonProperty("sex")]
         public string Sex { get; set; }
-        [JsonIgnore]
+        [JsonProperty("password")]
         public string Password { get; set; }
     }
 }

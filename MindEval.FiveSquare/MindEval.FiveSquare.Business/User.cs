@@ -1,9 +1,11 @@
-﻿using MindEval.FiveSquare.Helpers;
+﻿using System;
+using MindEval.FiveSquare.Helpers;
 using DTO = MindEval.FiveSquare.Common;
+using System.Collections.Generic;
 
 namespace MindEval.FiveSquare.Business
 {
-    public class User
+    public class User : IUser
     {
         private AccountService _accountService;
         private Data.UserRepository _userRepository;
@@ -19,10 +21,15 @@ namespace MindEval.FiveSquare.Business
             return _userRepository.FindUserById(id);
         }
 
+        public List<DTO.User> GetUsers()
+        {
+            return _userRepository.GetAll();
+        }
+
         public string Login(string email, string password)
         {
             if (!Exists(email, password))
-                throw new DTO.MamalonaException(DTO.MamalonaExceptionMessage.BadUserLogin);
+                throw new DTO.MamalonaException(DTO.MamalonaMessage.BadUserLogin);
             string token = CreateToken(email, password);
             _accountService.RegisterAccount(token);
             return token;
@@ -33,19 +40,19 @@ namespace MindEval.FiveSquare.Business
             _accountService.RemoveAccount(token);
         }
 
-        public void Register(DTO.User userModel)
+        public void Register(DTO.User user)
         {
-            Validate(userModel);
-            int newId = _userRepository.Insert(userModel);
+            Validate(user);
+            int newId = _userRepository.Insert(user);
             if (newId == 0)
-                throw new DTO.MamalonaException(DTO.MamalonaExceptionMessage.BadUserRegister);
+                throw new DTO.MamalonaException(DTO.MamalonaMessage.BadUserRegister);
         }
 
         private string CreateToken(string email, string password)
         {
             string token = TrucutruEncriptationService.Crypt(string.Format("{0}:{1}", email, password));
             if (string.IsNullOrEmpty(token))
-                throw new DTO.MamalonaException(DTO.MamalonaExceptionMessage.BadTokenCreation);
+                throw new DTO.MamalonaException(DTO.MamalonaMessage.BadTokenCreation);
             return token;
         }
 
@@ -63,8 +70,9 @@ namespace MindEval.FiveSquare.Business
             else if (string.IsNullOrEmpty(user.Email)) flag = true;
             else if (string.IsNullOrEmpty(user.Email)) flag = true;
             else if (string.IsNullOrEmpty(user.Password)) flag = true;
+
             if (flag)
-                throw new DTO.MamalonaException(DTO.MamalonaExceptionMessage.MissingInformationRequired);
+                throw new DTO.MamalonaException(DTO.MamalonaMessage.MissingInformationRequired);
         }
     }
 }

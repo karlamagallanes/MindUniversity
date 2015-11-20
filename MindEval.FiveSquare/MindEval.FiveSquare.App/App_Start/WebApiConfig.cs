@@ -15,21 +15,28 @@ namespace MindEval.FiveSquare.App
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "{controller}/{action}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                 name: "Default",
+                 routeTemplate: "{controller}/{action}/{id}",
+                 defaults: new { id = RouteParameter.Optional }
+             );
+
+            config.Routes.MapHttpRoute(
+                name: "userRegisterApi",
+                routeTemplate: "{controller}/Register/{user}",
+                 defaults: new { controller = "User" }
             );
 
-           // config.Routes.MapHttpRoute(
-           //    name: "CheckApi",
-           //    routeTemplate: "{controller}/{id}/{action}",
-           //    defaults: new { id = RouteParameter.Optional }
-           //);
+            config.Routes.MapHttpRoute(
+               name: "userLogoutApi",
+               routeTemplate: "{controller}/Logout",
+               defaults: new { controller = "User" }
+           );
 
-           // config.Routes.MapHttpRoute(
-           //    name: "Api",
-           //    routeTemplate: "api/{controller}/{action}"
-           //);
+            config.Routes.MapHttpRoute(
+                name: "PlaceApi",
+                routeTemplate: "{controller}/{id}/{action}",
+                defaults: new { controller = "Place" }
+            );
         }
     }
 }

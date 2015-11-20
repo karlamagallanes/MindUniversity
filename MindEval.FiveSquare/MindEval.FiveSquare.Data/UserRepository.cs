@@ -30,20 +30,20 @@ namespace MindEval.FiveSquare.Data
                 return instance;
             }
         }
+        public List<DTO.User> GetAll()
+        {
+            return users;
+        }
 
         public DTO.User FindUserById(int id)
         {
-            var user = from u in users
-                       where u.Id == id
-                       select u;
-            return (DTO.User)user;
+            DTO.User user = users.FirstOrDefault(p => p.Id == id);
+            return user;
         }
 
         public bool Exist(string email, string password)
         {
-            var user = from u in users
-                       where u.Email.Equals(email) && password.Equals(password)
-                       select u;
+            var user = users.FirstOrDefault(p => p.Email.Equals(email) && p.Password.Equals(password));
             return user != null;
         }
 
