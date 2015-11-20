@@ -1,30 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using BL = MindEval.FiveSquare.Business;
 using DTO = MindEval.FiveSquare.Common;
-using System;
-using System.Net.Http;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
-using System.Web;
-
-using System.Web.Http.ModelBinding;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.OAuth;
-
 
 namespace MindEval.FiveSquare.App.Controllers
 {
     [Authorize]
     public class UserController : ApiController
     {
-        private const string LocalLoginProvider = "Local";
-        private BL.User _user = new BL.User();
+        private BL.User _user = new  BL.User();
+
+        [ActionName("Get")]
+        [HttpGet]
+        public IHttpActionResult Register(int i)
+        {
+            return Ok(_user.GetUser(i));
+        }
+
 
         // POST api/User/Logout
         [Route("Register")]
@@ -35,29 +29,33 @@ namespace MindEval.FiveSquare.App.Controllers
                 _user.Register(userModel);
                 return Ok();
             }
-            catch (Exception ex)
+            catch (DTO.MamalonaException mamalon)
             {
-                HttpContext.Current.Response.StatusCode = 401;
+                return new MamalonResult(HttpStatusCode.BadRequest, mamalon.Message);
             }
         }
 
-
-        // GET: api/User/5
-        public IHttpActionResult Get(int id)
+        //POST api/User/Login
+        [Route("Login")]
+        public IHttpActionResult Login(string email, string password)
         {
-            DTO.User user = _user.GetUser(id);
-            if (user == null)
-                return NotFound();
-            return Ok(user);
+            try
+            {
+                string token = _user.Login(email, password);
+                return Ok(token);
+            }
+            catch (DTO.MamalonaException mamalon)
+            {
+                return new MamalonResult(HttpStatusCode.NotFound, mamalon.Message);
+            }
+            
         }
 
-        //// POST api/User/Logout
-        //[Route("Logout")]
-        //public IHttpActionResult Logout()
-        //{
-        //    Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
-        //    return Ok();
-        //}
-
+        // POST api/User/Logout
+        [Route("Logout")]
+        public IHttpActionResult Logout()
+        {            
+            return Ok();
+        }
     }
 }

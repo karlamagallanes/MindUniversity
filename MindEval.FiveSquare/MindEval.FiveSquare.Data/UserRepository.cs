@@ -1,44 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using DTO = MindEval.FiveSquare.Common;
 
 namespace MindEval.FiveSquare.Data
 {
-    // This project can output the Class library as a NuGet Package.
-    // To enable this option, right-click on the project and select the Properties menu item. In the Build tab select "Produce outputs on build".
     public class UserRepository
     {
+        private List<DTO.User> users;
+        private static UserRepository instance;
 
-        private static List<DTO.User> _users = new List<DTO.User>
+        private UserRepository()
         {
-            new DTO.User {Id=1, Name="Martin", LastName="Robles", Sex="Male", Email="martin@gmail.com", Years=19 , Password="martin@123"},
-            new DTO.User {Id=2, Name="Luis", LastName="Gonzalez", Sex="Male", Email="luis@gmail.com", Years=29 , Password="luis@123"},
-            new DTO.User {Id=3, Name="Maria", LastName="Perez", Sex="Female", Email="maria@gmail.com", Years=27, Password="maria@123"},
-            new DTO.User {Id=4, Name="Adriana", LastName="Ramirez", Sex="Female", Email="adriana@gmail.com", Years=45 , Password="adriana@123"},
-            new DTO.User {Id=5, Name="Jorge", LastName="Fernandez", Sex="Male", Email="jorge@gmail.com", Years=90 , Password="jorge@123"}
-        };
-
-        public UserRepository()
-        {
-
+            users = new List<DTO.User>
+            {
+                new DTO.User {Id=1, Name="Martin", LastName="Robles", Sex="Male", Email="martin@gmail.com", Years=19 , Password="martin@123"},
+                new DTO.User {Id=2, Name="Luis", LastName="Gonzalez", Sex="Male", Email="luis@gmail.com", Years=29 , Password="luis@123"},
+                new DTO.User {Id=3, Name="Maria", LastName="Perez", Sex="Female", Email="maria@gmail.com", Years=27, Password="maria@123"},
+                new DTO.User {Id=4, Name="Adriana", LastName="Ramirez", Sex="Female", Email="adriana@gmail.com", Years=45 , Password="adriana@123"},
+                new DTO.User {Id=5, Name="Jorge", LastName="Fernandez", Sex="Male", Email="jorge@gmail.com", Years=90 , Password="jorge@123"}
+            };
         }
 
-        public List<DTO.User> GetUsers()
+        public static UserRepository Instance
         {
-            return _users;
+            get
+            {
+                if (instance == null)
+                    instance = new UserRepository();
+                return instance;
+            }
         }
 
-        public DTO.User GetUser(int Id)
+        public DTO.User FindUserById(int id)
         {
-           return _users.FirstOrDefault(p => p.Id == Id);
-        }
-        public DTO.User GetUser(string email, string password)
-        {
-            return _users.FirstOrDefault(p => p.Email.Equals(email) && p.Password.Equals(password));
+            var user = from u in users
+                       where u.Id == id
+                       select u;
+            return (DTO.User)user;
         }
 
+        public bool Exist(string email, string password)
+        {
+            var user = from u in users
+                       where u.Email.Equals(email) && password.Equals(password)
+                       select u;
+            return user != null;
+        }
 
+        public int Insert(DTO.User user)
+        {
+            int newId = users.Select(p => p.Id).Max() + 1;
+            user.Id = newId;
+            users.Add(user);
+            return newId;
+        }
     }
 }

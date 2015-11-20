@@ -7,9 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindEval.FiveSquare.App", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindEval.FiveSquare.Business", "MindEval.FiveSquare.Business\MindEval.FiveSquare.Business.csproj", "{20E7E839-568D-4B67-9CD5-00A04DA624F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindEval.FiveSquare.Models", "MindEval.FiveSquare.Common\MindEval.FiveSquare.Models.csproj", "{4022B541-3980-4BCF-8752-AA3068CBB03F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindEval.FiveSquare.Common", "MindEval.FiveSquare.Common\MindEval.FiveSquare.Common.csproj", "{4022B541-3980-4BCF-8752-AA3068CBB03F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindEval.FiveSquare.Data", "MindEval.FiveSquare.Data\MindEval.FiveSquare.Data.csproj", "{2A486A07-D434-4DB4-AD83-15F7F454A6CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindEval.FiveSquare.Test", "MindEval.FiveSquare.Test\MindEval.FiveSquare.Test.csproj", "{0A29EED7-2CCF-4EB7-AD8A-11B8EE6A60EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindEval.FiveSquare.Helpers", "MindEval.FiveSquare.Helpers\MindEval.FiveSquare.Helpers.csproj", "{90572699-19AA-47C4-B752-524531DF4AC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{2A486A07-D434-4DB4-AD83-15F7F454A6CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A486A07-D434-4DB4-AD83-15F7F454A6CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A486A07-D434-4DB4-AD83-15F7F454A6CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A29EED7-2CCF-4EB7-AD8A-11B8EE6A60EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A29EED7-2CCF-4EB7-AD8A-11B8EE6A60EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A29EED7-2CCF-4EB7-AD8A-11B8EE6A60EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A29EED7-2CCF-4EB7-AD8A-11B8EE6A60EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90572699-19AA-47C4-B752-524531DF4AC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90572699-19AA-47C4-B752-524531DF4AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90572699-19AA-47C4-B752-524531DF4AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90572699-19AA-47C4-B752-524531DF4AC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

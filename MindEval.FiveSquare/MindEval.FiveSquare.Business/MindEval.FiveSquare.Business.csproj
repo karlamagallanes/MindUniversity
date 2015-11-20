@@ -40,19 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MindEval.FiveSquare.Common\MindEval.FiveSquare.Models.csproj">
+    <ProjectReference Include="..\MindEval.FiveSquare.Common\MindEval.FiveSquare.Common.csproj">
       <Project>{4022b541-3980-4bcf-8752-aa3068cbb03f}</Project>
-      <Name>MindEval.FiveSquare.Models</Name>
+      <Name>MindEval.FiveSquare.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\MindEval.FiveSquare.Data\MindEval.FiveSquare.Data.csproj">
       <Project>{2a486a07-d434-4db4-ad83-15f7f454a6cf}</Project>
       <Name>MindEval.FiveSquare.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MindEval.FiveSquare.Helpers\MindEval.FiveSquare.Helpers.csproj">
+      <Project>{90572699-19aa-47c4-b752-524531df4ac8}</Project>
+      <Name>MindEval.FiveSquare.Helpers</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

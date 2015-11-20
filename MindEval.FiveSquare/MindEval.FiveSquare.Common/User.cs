@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
 namespace MindEval.FiveSquare.Common
@@ -26,7 +25,6 @@ namespace MindEval.FiveSquare.Common
         [JsonProperty("sex")]
         public string Sex { get; set; }
         [JsonIgnore]
-        [DataType(DataType.Password)]
         public string Password { get; set; }
     }
 }
