@@ -20,6 +20,11 @@ namespace MindEval.FiveSquare.Business
                 throw new DTO.MamalonaException(DTO.MamalonaMessage.UserIsNotLogged);
         }
 
+        public bool IsLogged(string token)
+        {
+            return _activeTokens.IsActive(token);
+        }
+
         public void RegisterAccount(string token)
         {
             if(_activeTokens.IsActive(token))

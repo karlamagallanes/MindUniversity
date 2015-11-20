@@ -8,10 +8,15 @@ namespace MindEval.FiveSquare.Test
     [TestClass]
     public class UserTest
     {
+        private const string TOKEN = "bWFydGluQGdtYWlsLmNvbTptYXJ0aW5AMTIz";
         [TestMethod]
         public void Login()
         {
-            string token = new BL.User().Login("martin@gmail.com", "martin@123");
+            BL.IUser user = new BL.User();
+            if (new BL.AccountService().IsLogged(TOKEN))
+                user.Logout(TOKEN);
+
+            string token = user.Login("martin@gmail.com", "martin@123");
             Assert.IsFalse(string.IsNullOrEmpty(token));
         }
 

@@ -14,6 +14,8 @@ namespace MindEval.FiveSquare.Data
 
         private CheckRepository()
         {
+            checkInCount = new Dictionary<int, int>();
+            placeRate = new List<Tuple<int, int>>();
         }
 
         public static CheckRepository Instance
@@ -37,9 +39,7 @@ namespace MindEval.FiveSquare.Data
 
         public void CheckOut(int id)
         {
-            int count;
-            if (checkInCount.TryGetValue(id, out count))
-                checkInCount[id]--;
+            throw new NotImplementedException();
         }
 
         public int Count(int id)
@@ -58,8 +58,7 @@ namespace MindEval.FiveSquare.Data
         {
             decimal totalRate = 0;
             decimal count = 0;
-
-            List<Tuple<int, int>> ratings = (List<Tuple<int, int>>)placeRate.Where(p => p.Item1 == id);
+            IEnumerable<Tuple<int,int>> ratings= placeRate.Where(p => p.Item1 == id);
             foreach (Tuple<int, int> rate in ratings)
             {
                 totalRate += rate.Item2;

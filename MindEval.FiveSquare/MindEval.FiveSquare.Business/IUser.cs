@@ -14,5 +14,7 @@ namespace MindEval.FiveSquare.Business
         void Logout(string token);
 
         void Register(DTO.User user);
+
+        
     }
 }

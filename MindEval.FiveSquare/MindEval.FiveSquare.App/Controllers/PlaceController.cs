@@ -7,7 +7,6 @@ using DTO = MindEval.FiveSquare.Common;
 
 namespace MindEval.FiveSquare.App.Controllers
 {
-    [Authorize]
     public class PlaceController : ApiController
     {
         private BL.IPlace _place = new BL.Place();
@@ -62,8 +61,8 @@ namespace MindEval.FiveSquare.App.Controllers
             {
                 string token = Request.Headers.Authorization.Parameter;
                 int count = _checkManager.Count(id, token);
-                Ok(count);
-                return new MamalonResult(HttpStatusCode.OK, DTO.MamalonaMessage.Success);
+                return Ok(count);
+                
             }
             catch (DTO.MamalonaException mamalon)
             {
@@ -82,8 +81,7 @@ namespace MindEval.FiveSquare.App.Controllers
             {
                 string token = Request.Headers.Authorization.Parameter;
                 decimal rate = _checkManager.Rate(id, token);
-                Ok(rate);
-                return new MamalonResult(HttpStatusCode.OK, DTO.MamalonaMessage.Success);
+               return Ok(rate);
             }
             catch (DTO.MamalonaException mamalon)
             {
